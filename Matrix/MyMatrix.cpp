@@ -177,6 +177,19 @@ MyMatrix& MyMatrix::operator=(const MyMatrix other)
 
 
 
+MyMatrix MyMatrix::getStansposedMatrix()
+{
+	MyMatrix newMatrix(this->cols, this->rows);
+	for (int i = 0; i < this->rows; i++)
+	{
+		for (int j = 0; j < this->cols; j++)
+		{
+			newMatrix.arrPointer[j][i] = this->arrPointer[i][j];
+		}
+	}
+	return newMatrix;
+}
+
 void MyMatrix::fillRand()
 {
 	for (int i = 0; i < rows; i++)

@@ -103,7 +103,13 @@ void openInterface()
 
 int main()
 {
-    openInterface();
+    //openInterface();
+    MyMatrix a(2, 4);
+    a.fillRand();
+    a.print();
+
+    MyMatrix b = a.getStansposedMatrix();
+    b.print();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
