@@ -18,7 +18,7 @@ public:
 	MyMatrix operator* (const double mult);
 	MyMatrix& operator= (const MyMatrix other);
 
-
+	MyMatrix getInverseMatrix();
 	void fillRand();
 	void fillFromCsv(string path);
 	double det();
