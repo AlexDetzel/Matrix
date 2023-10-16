@@ -177,7 +177,7 @@ MyMatrix& MyMatrix::operator=(const MyMatrix other)
 
 
 
-MyMatrix MyMatrix::getStansposedMatrix()
+MyMatrix MyMatrix::getTransposedMatrix()
 {
 	MyMatrix newMatrix(this->cols, this->rows);
 	for (int i = 0; i < this->rows; i++)
@@ -188,6 +188,39 @@ MyMatrix MyMatrix::getStansposedMatrix()
 		}
 	}
 	return newMatrix;
+}
+
+MyMatrix MyMatrix::getReverseMatrix()
+{
+	double det = (*this).det();
+	if (this->cols != this->rows)
+	{
+		cout << "Matrix should be square!!!" << "\n";
+		return *this; //What i should return?
+	}
+	else if (det == 0)
+	{
+		cout << "This Matrix doesnt have ReverseMatrix!!!" << "\n";
+		return *this; //What i should return?
+	}
+	else
+	{
+		int mult = 1;
+		MyMatrix transposedMatrix = (*this).getTransposedMatrix();
+		MyMatrix confactorMatrix(transposedMatrix.getRows(), transposedMatrix.getCols());
+		MyMatrix reverseMatrix(transposedMatrix.getRows(), transposedMatrix.getCols());
+
+		for (int i = 0; i < transposedMatrix.rows; i++)
+		{
+			for (int j = 0; j < transposedMatrix.cols; j++)
+			{
+				confactorMatrix.arrPointer[i][j] = mult * transposedMatrix.CutRowAndCol(i, j).det();
+				mult *= (-1);
+			}
+		}
+		reverseMatrix = confactorMatrix * (1 / det);
+		return reverseMatrix;
+	}
 }
 
 void MyMatrix::fillRand()

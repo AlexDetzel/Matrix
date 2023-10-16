@@ -70,11 +70,12 @@ void openInterface()
             std::cout << "\n";
             std::cout << "What you would want to do with her?" << "\n";
             std::cout << "1.Multiply by Number" << "\t" << "2.Find the determinant" << "\t";
-            std::cout << "3.Safe in .CSV file" << "\t" << "4.Leave This Matrix and go to main menu" << "\n";
+            std::cout << "3.Find transposed Matrix" << "\t" << "4.Find reverse Matrix" << "\t";
+            std::cout << "5.Safe in .CSV file" << "\t" << "6.Leave This Matrix and go to main menu" << "\n";
             std::cout << "Write here your choice:" << "\n\n";
             std::cin >> action;
             std::cout << "\n";
-            if (action == 4) break;
+            if (action == 6) break;
             switch (action)
             {
             case 1:
@@ -88,6 +89,14 @@ void openInterface()
                 std::cout << "Determinant of matrix: " << matrix.det() << "\n";
                 break;
             case 3:
+                matrix = matrix.getTransposedMatrix();
+                std::cout << "Transposed Matrix was found" << "\n";
+                break;
+            case 4:
+                matrix = matrix.getReverseMatrix();
+                std::cout << "Reverse Matrix was found" << "\n";
+                break;
+            case 5:
                 string path;
                 std::cout << "Write name of File to safe Matrix in format \"xxxx.csv\" : " << matrix.det() << "\n";
                 std::cin >> path;
@@ -103,13 +112,7 @@ void openInterface()
 
 int main()
 {
-    //openInterface();
-    MyMatrix a(2, 4);
-    a.fillRand();
-    a.print();
-
-    MyMatrix b = a.getStansposedMatrix();
-    b.print();
+    openInterface();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

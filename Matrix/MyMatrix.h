@@ -18,7 +18,8 @@ public:
 	MyMatrix operator* (const double mult);
 	MyMatrix& operator= (const MyMatrix other);
 
-	MyMatrix getStansposedMatrix();
+	MyMatrix getTransposedMatrix();
+	MyMatrix getReverseMatrix();
 	void fillRand();
 	void fillFromCsv(string path);
 	double det();
