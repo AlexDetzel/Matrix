@@ -86,10 +86,10 @@ void openInterface()
         }
         case 3:
         {
-            std::cout << "Write count of rows your random Matrix:" << "\n";
+            std::cout << "Write count of rows your own Matrix:" << "\n";
             std::cin >> rows;
             std::cout << "\n";
-            std::cout << "Write count of cols your random Matrix:" << "\n";
+            std::cout << "Write count of cols your own Matrix:" << "\n";
             std::cin >> cols;
             std::cout << "\n";
             MyMatrix newMatrix(rows, cols);
