@@ -1,15 +1,11 @@
 #include "MyMatrix.h"
 
-MyMatrix::MyMatrix(int rows)
+
+MyMatrix::MyMatrix()
 {
-	//cout << "k" << "\n";
-	this->rows = rows;
-	this->cols = 1;
-	this->arrPointer = new double* [rows];
-	for (int i = 0; i < rows; i++)
-	{
-		arrPointer[i] = new double[cols];
-	}
+	double** arrPointer = 0;
+	int rows = 0;
+	int cols = 0;
 }
 
 MyMatrix::MyMatrix(int rows, int cols)
@@ -131,8 +127,7 @@ MyMatrix::MyMatrix(const MyMatrix& other)
 
 MyMatrix MyMatrix::operator*(const double mult)
 {
-	
-	MyMatrix newMatrix(*this);
+	MyMatrix newMatrix(*this);// Why not MyMatrix* newMatrixx = new MyMatrix(*this);
 	for (int i = 0; i < newMatrix.rows; i++)
 	{
 		for (int j = 0; j < newMatrix.cols; j++)
@@ -234,9 +229,19 @@ void MyMatrix::fillRand()
 	}
 }
 
-void MyMatrix::fillFromCsv(string path)
+void MyMatrix::fillOneValue(int row, int col, int value)
 {
+	if (row < this->rows && col < this->cols)
+	{
+		this->arrPointer[row][col] = value;
+	} else cout << "Element of Matrix doesnt exist";
 }
+
+double MyMatrix::getOneValue(int row, int col)
+{
+	return this->arrPointer[row][col];
+}
+
 
 double MyMatrix::det()
 {
@@ -282,6 +287,30 @@ int MyMatrix::getRows()
 	return this->rows;
 }
 
+void MyMatrix::setRowsAndCols(int rows, int cols)
+{
+	MyMatrix* newMatrix = new MyMatrix(rows, cols);
+	
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			if (i < this->rows && j < this->rows)
+				(*newMatrix).arrPointer[i][j] = this->arrPointer[i][i];
+			else 
+				(*newMatrix).arrPointer[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < this->rows; i++)
+	{
+		delete[] this->arrPointer[i];
+	}
+	delete[] this->arrPointer;
+	this->arrPointer = (*newMatrix).arrPointer;
+	this->rows = rows;
+	this->cols = cols;
+}
+
 int MyMatrix::getCols()
 {
 	return this->cols;
@@ -317,40 +346,7 @@ void MyMatrix::safeInCSV(string fileName)
 	}
 }
 
-void MyMatrix::fillWithHands()
-{
-	int number;
 
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			this->arrPointer[i][j] = 1;
-		}
-	}
-
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			for (int ii = 0; ii < rows; ii++)
-			{
-				for (int jj = 0; jj < cols; jj++)
-				{
-				if(i == ii & j == jj)
-				{
-					std::cout << "@" << "\t";
-				}else
-				std:cout << this->arrPointer[ii][jj] << "\t";
-				}
-				std::cout << "\n\n";
-			}
-			std::cout << "Write nubber:" << "\n";
-			std::cin >> number;
-			this->arrPointer[i][j] = number;
-		}
-	}
-}
 
 MyMatrix MyMatrix::CutRowAndCol(int cutRow, int cutCol)
 {

@@ -4,6 +4,41 @@
 #include <string>
 #include "MyMatrix.h"
 
+void fillWithHands(MyMatrix& matrix)
+{
+    int number;
+
+    for (int i = 0; i < matrix.getRows(); i++)
+    {
+        for (int j = 0; j < matrix.getCols(); j++)
+        {
+            matrix.fillOneValue(i, j, 1);
+        }
+    }
+
+    for (int i = 0; i < matrix.getRows(); i++)
+    {
+        for (int j = 0; j < matrix.getCols(); j++)
+        {
+            for (int ii = 0; ii < matrix.getRows(); ii++)
+            {
+                for (int jj = 0; jj < matrix.getCols(); jj++)
+                {
+                    if (i == ii && j == jj)
+                    {
+                        std::cout << "@" << "\t";
+                    }
+                    else
+                        std:cout << matrix.getOneValue(ii, jj) << "\t";
+                }
+                std::cout << "\n\n";
+            }
+            std::cout << "Write nubber:" << "\n";
+            std::cin >> number;
+            matrix.fillOneValue(i, j, number);
+        }
+    }
+}
 
 void openInterface()
 {
@@ -59,7 +94,7 @@ void openInterface()
             std::cout << "\n";
             MyMatrix newMatrix(rows, cols);
             matrix = newMatrix;
-            matrix.fillWithHands();
+            fillWithHands(matrix);
             break;
         }
         }
@@ -110,9 +145,12 @@ void openInterface()
 }
 
 
+
+
 int main()
 {
     openInterface();
+  
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

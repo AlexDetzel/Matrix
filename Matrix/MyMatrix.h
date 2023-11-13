@@ -7,7 +7,7 @@ using namespace std;
 class MyMatrix
 {
 public:
-	MyMatrix(int rows);
+	MyMatrix();
 	MyMatrix(int rows, int cols);
 	MyMatrix(string path);
 
@@ -20,14 +20,16 @@ public:
 
 	MyMatrix getTransposedMatrix();
 	MyMatrix getReverseMatrix();
+
 	void fillRand();
-	void fillFromCsv(string path);
+	void fillOneValue(int row, int col, int value);
+	double getOneValue(int row, int col);
 	double det();
 	void print();
 	int getRows();
+	void setRowsAndCols(int rows, int cols);
 	int getCols();
 	void safeInCSV(string fileName);
-	void fillWithHands();
 
 
 private:
