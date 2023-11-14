@@ -149,8 +149,10 @@ void openInterface()
 
 int main()
 {
-    openInterface();
-  
+    //openInterface();
+    MyMatrix a(2, 2);
+    a.fillRand();
+    MyMatrix b = a * 3;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
